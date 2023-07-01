@@ -7,6 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { app, BrowserWindow } from "electron";
+import { CustomScheme } from "./CustomScheme";
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 let mainWindow: BrowserWindow;
 
@@ -31,5 +32,11 @@ app.whenReady().then(() => {
       'http://127.0.0.1:5173'
     ],
   */
-  mainWindow.loadURL(process.argv[2]);
+
+  if (process.argv[2]) {
+    mainWindow.loadURL(process.argv[2]);
+  } else {
+    CustomScheme.registerScheme();
+    mainWindow.loadURL(`app://index.html`);
+  }
 });
