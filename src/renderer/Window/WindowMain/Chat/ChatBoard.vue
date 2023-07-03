@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
+import ChatItem from "./ChatItem.vue";
 import ChatSearch from "./ChatSearch.vue";
-onMounted(() => {});
+import { useChatStore } from "../../../store/useChatStore";
+let store = useChatStore();
+
+onMounted(() => {
+  //选中第七个会话
+  store.selectItem(store.data[6]);
+});
 </script>
 <template>
   <div class="ChatList">
     <ChatSearch />
-    <div class="ListBox"></div>
+    <div class="ListBox">
+      <!-- store 对象是通过useChatStore方法获取的，useChatStore方法就是我们前面介绍的useChatStore.ts导出的方法。得到 store 对象之后，可以直接使用store.data获取 Store 对象里的数据。 -->
+      <ChatItem :data="item" v-for="item in store.data" :key="item.id" />
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
