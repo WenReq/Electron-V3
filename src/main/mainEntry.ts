@@ -2,7 +2,7 @@
  * @Author: wenreq 294491328@qq.com
  * @Date: 2022-10-28 11:52:30
  * @LastEditors: wenreq 294491328@qq.com
- * @LastEditTime: 2023-07-02 22:08:26
+ * @LastEditTime: 2023-07-03 10:59:02
  * @FilePath: /electron-jue-jin-dev/src/main/mainEntry.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,7 @@ import { CustomScheme } from "./CustomScheme";
 import { CommonWindowEvent } from "./CommonWindowEvent";
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
+// 每当有一个窗口被创建成功后，这个事件就会被触发，主窗口和使用window.open创建的子窗口都一样
 app.on("browser-window-created", (e, win) => {
   CommonWindowEvent.regWinEvent(win);
 });
